@@ -26,14 +26,30 @@
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
     
     // Create dummy data
-   // var data = {a: 9, b: 20, c:30, d:8, e:12}
-    var data =d3.csv("https://raw.githubusercontent.com/xfiax/HASS-final_project/main/total-spend.csv?token=GHSAT0AAAAAABQ5MAZHXBK2WGQI7NT7FRI2YTFODZQ")
-    console.log(data)
-    
+
+   //var data = {};
+    //d3.csv("https://github.com/xfiax/HASS-final_project/blob/main/distribution-of-mhe-by-type-of-goods-and-services-broad-1-and-hqa-of-main-income-earner.csv",function(error,data1){
+   
+     d3.csv("https://raw.githubusercontent.com/xfiax/HASS-final_project/main/distribution-of-mhe-by-type-of-goods-and-services-broad-1-and-hqa-of-main-income-earner.csv",function(error,data1){
+       console.log(data1[1].level_1);
+
+       var data={};
+        for (const key in data1) {
+          if (data1[key].level_1 == 'Total' && data1[key].value != "100") {
+           
+           data[data1[key].level_2] = data1[key].value; 
+           Number(data[data1[key].level_2]);
+         }}
+ 
+       var totalA=d3
+         console.log(data)
+        })
+
+      // var data = {a: '9', b: '20', c:'30', d:'8', e:'12'}
     // set the color scale
     var color = d3.scaleOrdinal()
       .domain(data)
-      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
+      .range(["#98abc5","#8a89a6","#7b6888","#6b486b","#a05d56","#8a89a6","#7b6888","#6b486b","#a05d56","#8a89a6","#7b6888","#6b486b","#a05d56","#a05d56"])
     
     // Compute the position of each group on the pie:
     var pie = d3.pie()
